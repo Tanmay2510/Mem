@@ -5,7 +5,7 @@ function Form() {
   const classes = mStyles();
 
   return (
-    <div>
+    <div className={classes.root}>
     <h1>
     Form
     </h1></div>

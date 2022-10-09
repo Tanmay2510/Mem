@@ -2,10 +2,10 @@ import React from 'react'
 import mStyles from './styles.js'
 
 function Post() {
-  const classes = mStyles();
+  // const classes = mStyles();
 
   return (
-    <div className='classes'>
+    <div >
    <h1>Post</h1> 
    </div>
   )
