@@ -5,7 +5,7 @@ import { spacing } from '@mui/system';
 export default makeStyles(() => ({
     root: {
       '& .MuiTextField-root': {
-        margin:spacing(1)
+        margin:'10px'
       },
     },
     paper: {
@@ -21,6 +21,6 @@ export default makeStyles(() => ({
       margin: '10px 0',
     },
     buttonSubmit: {
-      marginBottom: 10,
+      marginBottom: '10px',
     },
   }));

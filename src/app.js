@@ -9,6 +9,8 @@ import {useDispatch} from 'react-redux';  //to dispatch an action
 const App = () =>{
   const classes = mStyles();
   const dispatch = useDispatch();
+
+  //3
   useEffect(()=>{
     dispatch(getPosts());  //successful dispatch 
   },[dispatch])
