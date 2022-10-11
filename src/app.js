@@ -1,4 +1,4 @@
-import React , {useEffect}from 'react';
+import React , {useEffect, useState}from 'react';
 import { Container,AppBar,Typography,Grow,Grid } from '@mui/material';
 import memories from "./images/memories.png"
 import Posts from './components/Posts/Posts.js'
@@ -9,11 +9,15 @@ import {useDispatch} from 'react-redux';  //to dispatch an action
 const App = () =>{
   const classes = mStyles();
   const dispatch = useDispatch();
+  const [theid,settheid] = useState(null); //props drilling
 
   //3
   useEffect(()=>{
     dispatch(getPosts());  //successful dispatch 
-  },[dispatch])
+  },[theid,dispatch])
+//in form clearing means changing the theid as soon as we change the ip 
+//the app is going to dis a getpost action
+
     return(
       <Container maxWidth="lg">
       <AppBar  style={{"display":"flex", "flexDirection":"row","position":"inherit"}}
@@ -25,10 +29,10 @@ const App = () =>{
         <Container>
           <Grid container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
-              <Posts  />
+              <Posts  settheid={settheid} />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form />
+              <Form  theid={settheid} settheid={settheid}/>
             </Grid>
           </Grid>
         </Container>

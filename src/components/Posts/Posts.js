@@ -9,8 +9,9 @@ import { Grid , CircularProgress } from '@mui/material';
 //how do we retrieve the data from within our components 
 //inside here we're going to somehow fetch the data from global redux store:USE SELECTORS
 
-function Posts() {
-  const posts = useSelector((state) => state.posts);
+function Posts({settheid}) {
+  const posts = useSelector((state) => state.posts);  //fetching all the pos
+  
   // const posts = useSelector((state)=>{
   //   //we are going to have all global redux store 
   //   state.posts 
@@ -33,6 +34,7 @@ function Posts() {
             <Grid item key={post._id} xs={12} sm={6}>
               <Post 
                 p={post}
+                settheid={settheid}
               />
             </Grid>
           )

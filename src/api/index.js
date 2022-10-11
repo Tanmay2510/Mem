@@ -6,6 +6,6 @@ export const fpost = ()=>axios.get(url);
 
 export const cpost = (newPost)=>axios.post(url,newPost)
 
-
+export const upost = (id,updatedPost) => axios.patch(`${url}/${id}`,updatedPost)
 
 //1

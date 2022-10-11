@@ -1,19 +1,34 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import mStyles from './Style.js'
 import {TextField,Button,Typography,Paper} from "@mui/material"; 
 import Filebase from "react-file-base64";
-import {useDispatch} from "react-redux";
-import { createPost } from '../../actions/posts.js';
-function Form() {
+import {useDispatch, useSelector} from "react-redux";
+import { createPost,updatePost } from '../../actions/posts.js';
+function Form({theid,settheid}) {
   const classes = mStyles();
   const dispatch = useDispatch();
+  const post = useSelector((state) => (theid ? state.posts.find((message) => message._id === theid) : null));
   const [postdata,setpostdata]=useState({creator:'',title:'',message:'',tags:'',selectedfile:''})
   const handlesub = (e) =>{
     e.preventDefault();
-    dispatch(createPost(postdata))
+    if(theid){
+      dispatch(updatePost(theid,postdata))
+    }else{
+      dispatch(createPost(postdata))
+ 
+    }
+    clear();
 
   }
+  useEffect(()=>{
+    if(post) setpostdata(post);
+
+  },[post]) // whenever something in post changes this is gonna run
+  //when the post val changes nothing to the actual post
+
   const clear = () =>{
+    settheid(null);
+    setpostdata({creator:'',title:'',message:'',tags:'',selectedfile:''});
     
   }
   //this means in every textfield if we do the same thing but we only change the last prop
@@ -24,7 +39,7 @@ function Form() {
   return (
     <Paper className={classes.paper}>
     <form onSubmit={handlesub} autoComplete="off" className={` ${classes.root}  ${classes.form}`} noValidate>
-      <Typography variant="h6">Share your memories</Typography>
+      <Typography variant="h6">{theid?'Sharing':'Creating' } your memories</Typography>
       <TextField
       name="Creator"
       variant="outlined"

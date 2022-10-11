@@ -5,25 +5,25 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import moment from "moment"
-function Post(props) {
+function Post({p,settheid}) {
   const classes = mStyles();
-  console.log(props.p)
+  console.log(p)
   return (
     <Card className={classes.card}>
-  <CardMedia className ={classes.media} image={props.p.selectedFile} title={props.p.title} /> 
+  <CardMedia className ={classes.media} image={p.selectedFile} title={p.title} /> 
 
         <div className={classes.overlay}>
-        <Typography variant="h6">{props.p.creator}</Typography>
-        <Typography variant="body2">{moment(props.p.createdAtProp).fromNow()}</Typography>
+        <Typography variant="h6">{p.creator}</Typography>
+        <Typography variant="body2">{moment(p.createdAtProp).fromNow()}</Typography>
         </div>
         <div className={classes.overlay2}>
             <Button style={{color:"white"}} size="small"
-            onClick={()=>{}}>
+            onClick={()=>{settheid(p._id)}}>
             <MoreHorizIcon fontSize="default" ></MoreHorizIcon>
             </Button>
         </div>
         <div className={classes.details}>
-        <Typography variant="body2" color="textSecondary">{props.p.tags.map((tag)=>{
+        <Typography variant="body2" color="textSecondary">{p.tags.map((tag)=>{
           return(
 
           `#${tag}`
@@ -31,9 +31,12 @@ function Post(props) {
 
         })}</Typography>
         </div>
-        <CardContent>
         <Typography className={classes.title} variant="h5" gutterBottom>{
-        props.p.message
+          p.title
+          }</Typography>
+        <CardContent>
+        <Typography variant="h5" gutterBottom>{
+        p.message
         }</Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
@@ -41,7 +44,7 @@ function Post(props) {
           onClick={()=>{}}>
             <ThumbUpAltIcon fontSize="small"></ThumbUpAltIcon>  
             Like
-            {props.p.likeCound}        
+            {p.likeCound}        
           </Button>
           <Button size="small" color="primary"
           onClick={()=>{}}>

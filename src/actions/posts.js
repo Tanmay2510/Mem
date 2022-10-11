@@ -17,7 +17,7 @@ export const getPosts = () => async(dispatch) => {
         const {data} = await api.fpost();
         //getting the response from the api n the api have an data object which 
         //we r returning from the object
-        console.log(data) //array of all the data from bknd
+        // console.log(data) //array of all the data from bknd
         dispatch({type:'FETCH_ALL',payload:data});
     
     } catch (error) {
@@ -33,8 +33,17 @@ export const getPosts = () => async(dispatch) => {
 export const createPost=(post)=>async(dispatch)=>{
     try {
         const {data} = await api.cpost(post);
-        console.log(data)   //getting the data that we just posted w/prev data
+        // console.log(data)   //getting the data that we just posted w/prev data
         dispatch({type:'CREATE',payload:data});
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updatePost=(id,post) => async(dispatch) =>{
+    try {
+        const {data} = await api.upost(id,post)  //returning an updated memory
+        dispatch({type:'UPDATE',payload:data});
     } catch (error) {
         console.log(error)
     }
