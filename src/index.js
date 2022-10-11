@@ -8,6 +8,7 @@ import { Provider } from "react-redux"  //it is going to keep track of the store
 import {createStore,applyMiddleware,compose } from "redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
+import "./index.css"
 
 const store = createStore(reducers,compose(applyMiddleware(thunk)));  // to set redux
 ReactDOM.render(

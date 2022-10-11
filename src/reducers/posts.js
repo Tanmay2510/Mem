@@ -7,10 +7,10 @@ export default (posts = [],action) =>{
     //in reducers the state(posts) should be equal to something
     switch (action.type) {
         case 'FETCH_ALL':        //FOR FETCHING ALL THE POST
-        console.log(action.payload)  //all the data w/PD
+        // console.log(action.payload)  //all the data w/PD
             return action.payload; //our actual posts
         case 'CREATE':
-            console.log(action.payload) //new data
+            // console.log(action.payload) //new data
             return [...posts,action.payload];
         default:
             return posts;
